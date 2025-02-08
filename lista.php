@@ -1,31 +1,4 @@
-<?php
-/*----- KEY ----------*/
-$key = "7c4ea8";
-/*----- DOMAIN -------*/
-$domain = "https://xeev.app";
-/*--------------------*/
 
-$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-
-$catid = 0;
-
-if(isset($_GET['id'])) {
-    $catid = $_GET['id'];
-}
-
-$options = array(
-  'http'=>array(
-    'method'=>"GET", 'header'=>	"User-Agent: XEEV-PREVIEW\r\n"
-  )
-);
-
-$context = stream_context_create($options);
-
-$api_url = "$domain/en/tmpl_api_v3?key=$key&catid=$catid";
-
-$j_data = file_get_contents($api_url, false, $context);
-$data = json_decode($j_data);
-?>
 <!DOCTYPE html>
 <html lang="en"><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
